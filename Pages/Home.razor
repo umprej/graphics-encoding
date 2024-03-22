@@ -1,0 +1,90 @@
+﻿@page "/"
+
+@using Models;
+
+<PageTitle>Graphics Encoding</PageTitle>
+
+<h1>Graphics Encoding</h1>
+
+<style>
+    .raster {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .raster-row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .pixel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        width: 20px;
+        border: 4px solid black;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+
+</style>
+
+<div class="raster">
+    @for (int i = 0; i < raster.Col; i++)
+    {
+        <div class="raster-row">
+            @for (int j = 0; j < raster.Row; j++)
+            {
+                <div class="pixel">@raster.Grid[i,j].Color</div>
+            }
+        </div>
+    }
+</div>
+
+<br />                       
+
+<div class="raster">
+    @for (int i = 0; i < rasterSmiley.Col; i++)
+    {
+        <div class="raster-row">
+            @for (int j = 0; j < rasterSmiley.Row; j++)
+            {
+                <div class="pixel">@rasterSmiley.Grid[i, j].Color</div>
+            }
+        </div>
+    }
+</div>
+
+<br />
+
+<div class="raster">
+    @for (int i = 0; i < rasterAssymetric.Col; i++)
+    {
+        <div class="raster-row">
+            @for (int j = 0; j < rasterAssymetric.Row; j++)
+            {
+                <div class="pixel">@rasterAssymetric.Grid[i, j].Color</div>
+            }
+        </div>
+    }
+</div>
+
+
+@code {
+    Raster raster = new Raster(5, 5);
+
+    Raster rasterSmiley = new Raster(new int[,] {
+        {0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0},
+        {0, 0, 0, 0, 0},
+        {1, 0, 0, 0, 1},
+        {0, 1, 1, 1, 0}
+     });
+
+    Raster rasterAssymetric = new Raster(new int[,] {
+        {1, 1, 1, 1, 0},
+        {0, 0, 0, 0, 1},
+        {0, 1, 1, 1, 0}
+     });
+}
