@@ -11,16 +11,20 @@
 <br>
 <DisplayRaster Raster="rasterSmiley"/>
 <br>
-<DisplayRaster Raster="rasterAssymetric"/>
+<DisplayRaster Raster="rasterMultipleDigits"/>
+<br>
+<DisplayRaster Raster="rasterGreyscaleTest"/>
+
+
 
 @code {
     Raster raster = new Raster(5, 5);
 
     Raster rasterSmiley = new Raster(new int[,] {
         {0, 1, 0, 1, 0},
-        {0, 1, 0, 1, 0},
+        {0, 2, 0, 2, 0},
         {0, 0, 0, 0, 0},
-        {1, 0, 0, 0, 1},
+        {1, 4, 4, 4, 1},
         {0, 1, 1, 1, 0}
      });
 
@@ -28,5 +32,18 @@
         {1, 1, 1, 1, 0},
         {0, 0, 0, 0, 1},
         {0, 1, 1, 1, 0}
+     });
+
+     Raster rasterMultipleDigits = new Raster(new int[,] {
+        {1, 60, 1, 0},
+        {0, 0, 255, 0},
+        {0, 344, 1, 1}
+     });
+
+     Raster rasterGreyscaleTest = new Raster(new int[,] {
+        {0, 16, 16*2, 16*3},
+        {16*4, 16*5, 16*6, 16*7},
+        {16*8, 16*9, 16*10, 16*11},
+        {16*12, 16*13, 16*14, 16*15}
      });
 }

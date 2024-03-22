@@ -6,6 +6,7 @@
 
         public int Col = 0;
         public int Row = 0;
+        public int MaxColor = 0;
 
         public Raster()
         {
@@ -40,6 +41,7 @@
             }
         }
 
+
         private void BuildRaster(int[,] grid)
         {
             Grid = new Pixel[Col, Row];
@@ -48,6 +50,7 @@
             {
                 for (int j = 0; j < Grid.GetLength(1); j++)
                 {
+                    MaxColor = Math.Max(MaxColor, grid[i, j]);
                     Grid[i, j] = new Pixel(grid[i,j]);
                 }
             }
