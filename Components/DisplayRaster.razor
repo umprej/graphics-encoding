@@ -1,0 +1,18 @@
+@using Models;
+
+
+<div class="raster">
+    @for (int i = 0; i < Raster.Col; i++)
+    {
+        <div class="raster-row">
+            @for (int j = 0; j < Raster.Row; j++)
+            {
+                <div class="pixel">@Raster.Grid[i, j].Color</div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public Raster Raster { get; set; }
+}
