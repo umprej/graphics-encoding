@@ -7,6 +7,7 @@
         public int Col = 0;
         public int Row = 0;
         public int MaxColor = 0;
+        public SortedSet<int> ColorPallete = new SortedSet<int>();
 
         public Raster()
         {
@@ -52,6 +53,7 @@
                 {
                     MaxColor = Math.Max(MaxColor, grid[i, j]);
                     Grid[i, j] = new Pixel(grid[i,j]);
+                    ColorPallete.Add(Grid[i, j].Color);
                 }
             }
         }

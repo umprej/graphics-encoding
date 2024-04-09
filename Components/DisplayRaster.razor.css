@@ -18,3 +18,13 @@
     width: 2.5em;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+.raster-legend-pair {
+    position: relative;
+}
+
+.legend {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

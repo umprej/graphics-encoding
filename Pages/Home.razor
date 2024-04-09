@@ -7,19 +7,17 @@
 
 <h1>Graphics Encoding</h1>
 
-<DisplayRaster Raster="raster"/>
-<br>
 <DisplayRaster Raster="rasterSmiley"/>
 <br>
 <DisplayRaster Raster="rasterMultipleDigits"/>
 <br>
 <DisplayRaster Raster="rasterGreyscaleTest"/>
+<br>
+<DisplayRaster Raster="rasterVertical"/>
 
 
 
 @code {
-    Raster raster = new Raster(5, 5);
-
     Raster rasterSmiley = new Raster(new int[,] {
         {0, 1, 0, 1, 0},
         {0, 2, 0, 2, 0},
@@ -45,5 +43,12 @@
         {16*4, 16*5, 16*6, 16*7},
         {16*8, 16*9, 16*10, 16*11},
         {16*12, 16*13, 16*14, 16*15}
+     });
+
+      Raster rasterVertical = new Raster(new int[,] {
+        {1, 60},
+        {0, 0},
+        {4, 12},
+        {0, 344}
      });
 }

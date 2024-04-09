@@ -1,17 +1,27 @@
 @using Models;
 
+<div class="raster-legend-pair">
+    <div class="raster">
+        @for (int i = 0; i < Raster.Col; i++)
+        {
+            <div class="raster-row">
+                @for (int j = 0; j < Raster.Row; j++)
+                {
+                    <div class="pixel" style="background-color:rgba(0,0,0,@((double)Raster.Grid[i,j].Color / Raster.MaxColor));">@Raster.Grid[i, j].Color</div>
+                }
+            </div>
+        }
+    </div>
 
-<div class="raster">
-    @for (int i = 0; i < Raster.Col; i++)
-    {
-        <div class="raster-row">
-            @for (int j = 0; j < Raster.Row; j++)
-            {
-                //int pixelColor = 
-                <div class="pixel" style="background-color:rgba(0,0,0,@((double)Raster.Grid[i,j].Color / Raster.MaxColor));">@Raster.Grid[i, j].Color</div>
-            }
-        </div>
-    }
+    <div class="raster legend">
+        <div>legenda</div>
+        @foreach (int color in Raster.ColorPallete) {
+            <div class="raster-row">
+                <div class="pixel">@color</div>
+                <div class="pixel" style="background-color:rgba(0,0,0,@((double)color / Raster.MaxColor));"></div>
+            </div>
+        }
+    </div>
 </div>
 
 @code {
