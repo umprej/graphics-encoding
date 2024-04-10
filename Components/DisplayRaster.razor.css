@@ -3,6 +3,7 @@
     flex-direction: column;
     border: 1px solid rgba(0, 0, 0, 0.1);
     width: fit-content;
+    margin: 0.5em;
 }
 
 .raster-row {
@@ -20,11 +21,6 @@
 }
 
 .raster-legend-pair {
-    position: relative;
-}
-
-.legend {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    display: flex;
+    flex-direction: row;
 }
