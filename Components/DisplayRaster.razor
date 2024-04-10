@@ -7,7 +7,9 @@
             <div class="raster-row">
                 @for (int j = 0; j < Raster.Row; j++)
                 {
-                    <div class="pixel" style="background-color:rgba(0,0,0,@((double)Raster.Grid[i,j].Color / Raster.MaxColor));">@Raster.Grid[i, j].Color</div>
+                    double backgroundColorAlpha = (double)Raster.Grid[i, j].Color / Raster.MaxColor;
+                    string textColorString = backgroundColorAlpha > 0.5 ? "white" : "black";
+                    <div class="pixel" style="background-color:rgba(0,0,0,@backgroundColorAlpha);color:@textColorString">@Raster.Grid[i, j].Color</div>
                 }
             </div>
         }
