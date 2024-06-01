@@ -4,6 +4,7 @@
     {
         public int Color;
         public int CurrentColor = 0;
+        public bool Clicked = false;
 
         public Pixel()
         {
@@ -19,6 +20,11 @@
             CurrentColor = color;
         }
 
+        public void ChangeCurrentColor(int color)
+        {
+            CurrentColor = color;
+            Clicked = true;
+        }
         public bool ColorsMatch() => Color == CurrentColor;
     }
 }

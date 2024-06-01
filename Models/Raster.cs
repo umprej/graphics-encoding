@@ -10,9 +10,9 @@
         public int MaxColor = 0;
         public SortedSet<int> ColorPallete = new SortedSet<int>();
 
-        public bool DisplayValues;
-        public bool DisplayColor;
-        public bool Clickable;
+        public bool DisplayValues = true;
+        public bool DisplayColor = true;
+        public bool Clickable = false;
 
         public Raster()
         {
@@ -74,6 +74,16 @@
         public void ChangeColor(Pixel pixel) {
             Console.WriteLine("Attempt to change color");
             Console.WriteLine(pixel);
+        }
+
+        public int GetColorAtIndex(int index)
+        {
+            SortedSet<int>.Enumerator em = ColorPallete.GetEnumerator();
+            for (int i = 0; i < index + 1; i++)
+            {
+                em.MoveNext();
+            }
+            return em.Current;
         }
 
     }
