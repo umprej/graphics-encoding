@@ -10,6 +10,8 @@
 <br>
 <DisplayRaster Raster="rasterValuesOnly" />
 
+<button @onclick="CheckColoring">Kontrola: @colorsCorrect</button>
+
 @code {
     Raster rasterValuesOnly = new Raster(new int[,] {
         {0, 1, 0, 1, 0},
@@ -18,4 +20,11 @@
         {1, 4, 4, 4, 1},
         {0, 1, 1, 1, 0}
      }, true, false, true);
+
+    bool colorsCorrect = true;
+
+    private void CheckColoring()
+    {
+        colorsCorrect = rasterValuesOnly.Check();
+    } 
 }

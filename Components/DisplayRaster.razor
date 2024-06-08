@@ -14,7 +14,7 @@
   
                     string textColorString = backgroundColorAlpha > 0.5 ? "white" : "black";
                     string colorValue = Raster.DisplayValues ? Raster.Grid[i, j].Color.ToString() : string.Empty;
-                    <div class="pixel" @onclick="(()=>ChangePixelColor(localI, localJ))" style=" background-color:rgba(0,0,0,@backgroundColorAlpha);color:@textColorString">@colorValue</div>
+                    <div class="pixel @(Raster.CheckState && !Raster.Grid[i, j].ColorsMatch() ? "incorrect" : "")" @onclick="(()=>ChangePixelColor(localI, localJ))" style="background-color:rgba(0,0,0,@backgroundColorAlpha); color:@textColorString">@colorValue</div>
                 }
             </div>
         }

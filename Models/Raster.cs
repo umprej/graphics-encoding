@@ -14,6 +14,11 @@
         public bool DisplayColor = true;
         public bool Clickable = false;
 
+        public bool CheckState = false;
+
+        private HashSet<int> ColsMiscolored = new HashSet<int>();
+        private HashSet<int> RowsMiscolored = new HashSet<int>();
+
         public Raster()
         {
             BuildRaster();
@@ -84,6 +89,25 @@
                 em.MoveNext();
             }
             return em.Current;
+        }
+
+        public bool Check()
+        {
+            CheckState = true;
+            bool ret = true;
+            for (int i = 0; i < Col; i++)
+            {
+                for (int j = 0;j < Row; j++)
+                {
+                    if (!Grid[i, j].ColorsMatch())
+                    {
+                        ColsMiscolored.Add(i);
+                        RowsMiscolored.Add(j);
+                        ret = false;
+                    }
+                }
+            }
+            return ret;
         }
 
     }
