@@ -121,6 +121,37 @@
             return em.Current;
         }
 
+        public bool ColorsMatchBool() {
+            for (int i = 0; i < Grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < Grid.GetLength(1); j++)
+                {
+                    if (!Grid[i,j].ColorsMatch()) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
 
+        public (List<int> mismatchedRows, List<int> mismatchedColumns) ColorsMatch()
+        {
+            HashSet<int> mismatchedRows = new HashSet<int>();
+            HashSet<int> mismatchedColumns = new HashSet<int>();
+
+            for (int i = 0; i < Grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < Grid.GetLength(1); j++)
+                {
+                    if (!Grid[i, j].ColorsMatch())
+                    {
+                        mismatchedRows.Add(i);
+                        mismatchedColumns.Add(j);
+                    }
+                }
+            }
+
+            return (mismatchedRows.ToList(), mismatchedColumns.ToList());
+        }
     }
 }

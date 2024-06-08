@@ -10,6 +10,10 @@
 <br>
 <DisplayRaster Raster="rasterValuesOnly" />
 
+<button class="check-color-btn" @onclick="(()=>compareColors())">Kontrola: @retCompareColors</button>
+<div>Radky:   @mismatchedRows</div>
+<div>Sloupce: @mismatchedCols</div>
+
 @code {
     Raster rasterValuesOnly = new Raster(new int[,] {
         {0, 1, 0, 1, 0},
@@ -18,4 +22,18 @@
         {1, 4, 4, 4, 1},
         {0, 1, 1, 1, 0}
      }, true, false, true);
+
+    (List<int> rows, List<int> cols) mismatched;
+
+    string mismatchedRows = "";
+    string mismatchedCols = "";
+    bool retCompareColors = false;
+
+    public bool compareColors() {
+        retCompareColors = rasterValuesOnly.ColorsMatchBool();
+        mismatched = rasterValuesOnly.ColorsMatch();
+        mismatchedRows = string.Join(" ", mismatched.rows);
+        mismatchedCols = string.Join(" ", mismatched.cols);
+        return retCompareColors;
+    }
 }
