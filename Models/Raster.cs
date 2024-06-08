@@ -9,6 +9,8 @@
         public int MaxColor = 0;
         public SortedSet<int> ColorPallete = new SortedSet<int>();
 
+        private string delimiter = " ";
+
         public Raster()
         {
             BuildRaster();
@@ -28,6 +30,38 @@
             BuildRaster(grid);
         }
 
+        public Raster(string filename, int firstColor) {
+            try
+            {
+                // Open the text file using a stream reader.
+                using StreamReader reader = new("/Data/" + filename);
+
+                // Read the stream as a string.
+                string text = reader.ReadToEnd();
+
+                // Write the text to the console.
+                Console.WriteLine(text);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+        public override string ToString() {
+            string str = "";
+            for (int i = 0; i < Grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < Grid.GetLength(1); j++)
+                {
+                    str += Grid[i, j].Color.ToString();
+                    str += j != Grid.GetLength(1) - 1 ? this.delimiter : Environment.NewLine;
+                }
+            }
+            return str;
+        }
 
         private void BuildRaster()
         {
@@ -57,5 +91,6 @@
                 }
             }
         }
+
     }
 }

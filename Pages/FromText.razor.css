@@ -1,0 +1,8 @@
+.text-raster-pair {
+    display: flex;
+    flex-direction: row;
+}
+
+.pre-wrap {
+    white-space: pre-wrap;
+}

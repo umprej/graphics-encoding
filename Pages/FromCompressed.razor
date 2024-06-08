@@ -1,0 +1,13 @@
+@page "/FromCompressed"
+
+@using Models;
+@using graphics_encoding.Components;
+
+<div class="text-raster-pair">
+    <DisplayRaster Raster="rasterSmiley"/>
+</div>
+<br>
+
+@code {
+    Raster rasterSmiley = new Raster("in1.txt", 1);
+}

@@ -1,0 +1,22 @@
+@page "/FromText"
+
+@using Models;
+@using graphics_encoding.Components;
+
+<div class="text-raster-pair">
+    <div class="text-display pre-wrap">
+        @rasterSmiley.ToString()
+    </div>
+    <DisplayRaster Raster="rasterSmiley"/>
+</div>
+<br>
+
+@code {
+    Raster rasterSmiley = new Raster(new int[,] {
+        {0, 1, 0, 1, 0},
+        {0, 2, 0, 2, 0},
+        {0, 0, 0, 0, 0},
+        {1, 4, 4, 4, 1},
+        {0, 1, 1, 1, 0}
+     });
+}
