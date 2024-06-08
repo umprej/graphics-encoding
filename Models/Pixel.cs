@@ -3,6 +3,8 @@
     public class Pixel
     {
         public int Color;
+        public int CurrentColor = 0;
+        public bool Clicked = false;
 
         public Pixel()
         {
@@ -12,5 +14,17 @@
         {
             Color = color;
         }
+
+        public void DrawnColor(int color)
+        {
+            CurrentColor = color;
+        }
+
+        public void ChangeCurrentColor(int color)
+        {
+            CurrentColor = color;
+            Clicked = true;
+        }
+        public bool ColorsMatch() => Color == CurrentColor;
     }
 }

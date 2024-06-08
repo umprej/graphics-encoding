@@ -7,9 +7,14 @@
             <div class="raster-row">
                 @for (int j = 0; j < Raster.Row; j++)
                 {
-                    double backgroundColorAlpha = (double)Raster.Grid[i, j].Color / Raster.MaxColor;
+                    double backgroundColorAlpha = Raster.DisplayColor ? (double)Raster.Grid[i, j].Color / Raster.MaxColor : (double)Raster.Grid[i, j].CurrentColor / Raster.MaxColor;
+
+                    var localI = i;
+                    var localJ = j;
+  
                     string textColorString = backgroundColorAlpha > 0.5 ? "white" : "black";
-                    <div class="pixel" style="background-color:rgba(0,0,0,@backgroundColorAlpha);color:@textColorString">@Raster.Grid[i, j].Color</div>
+                    string colorValue = Raster.DisplayValues ? Raster.Grid[i, j].Color.ToString() : string.Empty;
+                    <div class="pixel" @onclick="(()=>ChangePixelColor(localI, localJ))" style=" background-color:rgba(0,0,0,@backgroundColorAlpha);color:@textColorString">@colorValue</div>
                 }
             </div>
         }
@@ -20,12 +25,28 @@
         @foreach (int color in Raster.ColorPallete) {
             <div class="raster-row">
                 <div class="pixel">@color</div>
-                <div class="pixel" style="background-color:rgba(0,0,0,@((double)color / Raster.MaxColor));"></div>
+                <div class="pixel" @onclick="(()=>SelectBrushColor(color))" style="background-color:rgba(0,0,0,@((double)color / Raster.MaxColor));">
+                </div>
             </div>
         }
     </div>
+
+    <div>@currentBrushColor</div>
 </div>
 
 @code {
     [Parameter] public Raster Raster { get; set; }
+
+    private int currentBrushColor = 0;
+
+    private void SelectBrushColor(int color)
+    {
+        currentBrushColor = color;
+    }
+
+    private void ChangePixelColor(int i, int j)
+    {
+        Raster.Grid[i, j].ChangeCurrentColor(currentBrushColor);
+        StateHasChanged();
+    }
 }
