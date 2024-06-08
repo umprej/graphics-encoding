@@ -2,17 +2,18 @@
 
 @using Models;
 @using graphics_encoding.Components;
+@using System.Collections.Generic;
 
 <PageTitle>Image Coloring</PageTitle>
 
 <h1>Image Coloring</h1>
 
 <br>
-<DisplayRaster Raster="rasterValuesOnly" />
+<DisplayRaster Raster="rasterValuesOnly" MismatchedRows="mismatchedRows" MismatchedColumns="mismatchedCols" />
 
-<button class="check-color-btn" @onclick="(()=>compareColors())">Kontrola: @retCompareColors</button>
-<div>Radky:   @mismatchedRows</div>
-<div>Sloupce: @mismatchedCols</div>
+<button class="check-color-btn" @onclick="CompareColors">Kontrola: @retCompareColors</button>
+<div>Radky: @string.Join(" ", mismatchedRows)</div>
+<div>Sloupce: @string.Join(" ", mismatchedCols)</div>
 
 @code {
     Raster rasterValuesOnly = new Raster(new int[,] {
@@ -21,19 +22,17 @@
         {0, 0, 0, 0, 0},
         {1, 4, 4, 4, 1},
         {0, 1, 1, 1, 0}
-     }, true, false, true);
+    }, true, false, true);
 
-    (List<int> rows, List<int> cols) mismatched;
-
-    string mismatchedRows = "";
-    string mismatchedCols = "";
+    HashSet<int> mismatchedRows = new HashSet<int>();
+    HashSet<int> mismatchedCols = new HashSet<int>();
     bool retCompareColors = false;
 
-    public bool compareColors() {
+    public void CompareColors()
+    {
         retCompareColors = rasterValuesOnly.ColorsMatchBool();
-        mismatched = rasterValuesOnly.ColorsMatch();
-        mismatchedRows = string.Join(" ", mismatched.rows);
-        mismatchedCols = string.Join(" ", mismatched.cols);
-        return retCompareColors;
+        var (rows, cols) = rasterValuesOnly.ColorsMatch();
+        mismatchedRows = new HashSet<int>(rows);
+        mismatchedCols = new HashSet<int>(cols);
     }
 }
