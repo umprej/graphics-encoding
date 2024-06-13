@@ -1,19 +1,15 @@
 ﻿@page "/image-coloring"
 
-@using Models;
-@using graphics_encoding.Components;
-@using System.Collections.Generic;
+@using Models
+@using graphics_encoding.Components
+@using System.Collections.Generic
 
 <PageTitle>Image Coloring</PageTitle>
 
 <h1>Image Coloring</h1>
 
 <br>
-<DisplayRaster Raster="rasterValuesOnly" MismatchedRows="mismatchedRows" MismatchedColumns="mismatchedCols" ShowMismatchIndicators="true"/>
-
-<button class="check-color-btn" @onclick="CompareColors">Kontrola: @retCompareColors</button>
-<div>Radky: @string.Join(" ", mismatchedRows)</div>
-<div>Sloupce: @string.Join(" ", mismatchedCols)</div>
+<DisplayRaster Raster="rasterValuesOnly" ShowMismatchIndicators="true" />
 
 @code {
     Raster rasterValuesOnly = new Raster(new int[,] {
@@ -23,16 +19,4 @@
         {1, 4, 4, 4, 1},
         {0, 1, 1, 1, 0}
     }, true, false, true);
-
-    HashSet<int> mismatchedRows = new HashSet<int>();
-    HashSet<int> mismatchedCols = new HashSet<int>();
-    bool retCompareColors = false;
-
-    public void CompareColors()
-    {
-        retCompareColors = rasterValuesOnly.ColorsMatchBool();
-        var (rows, cols) = rasterValuesOnly.ColorsMatch();
-        mismatchedRows = new HashSet<int>(rows);
-        mismatchedCols = new HashSet<int>(cols);
-    }
 }
