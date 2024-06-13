@@ -9,7 +9,7 @@
 <h1>Image Coloring</h1>
 
 <br>
-<DisplayRaster Raster="rasterValuesOnly" MismatchedRows="mismatchedRows" MismatchedColumns="mismatchedCols" />
+<DisplayRaster Raster="rasterValuesOnly" MismatchedRows="mismatchedRows" MismatchedColumns="mismatchedCols" ShowMismatchIndicators="true"/>
 
 <button class="check-color-btn" @onclick="CompareColors">Kontrola: @retCompareColors</button>
 <div>Radky: @string.Join(" ", mismatchedRows)</div>

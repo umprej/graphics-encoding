@@ -1,9 +1,43 @@
-.raster {
+.raster-grid {
+    display: grid;
+    box-sizing: border-box;
+    height: auto;
+    width: fit-content;
+    margin: 5px
+}
+
+.raster-legend-pair {
+    display: flex;
+    flex-direction: row;
+}
+
+.empty {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.col-mismatched {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.row-mismatched {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-right: 5px;
+}
+
+.raster {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    display: flex;
+    flex-direction: column;
     width: fit-content;
-    margin: 0.5em;
 }
 
 .raster-row {
@@ -18,9 +52,4 @@
     height: 2.5em;
     width: 2.5em;
     border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.raster-legend-pair {
-    display: flex;
-    flex-direction: row;
 }
