@@ -9,6 +9,8 @@
 
 <DisplayRaster Raster="rasterSmiley"/>
 <br>
+<DisplayRaster Raster="rasterSmileyBW" />
+<br>
 <DisplayRaster Raster="rasterMultipleDigits"/>
 <br>
 <DisplayRaster Raster="rasterGreyscaleTest"/>
@@ -31,6 +33,14 @@
         {0, 2, 0, 2, 0},
         {0, 0, 0, 0, 0},
         {1, 4, 4, 4, 1},
+        {0, 1, 1, 1, 0}
+     });
+
+    Raster rasterSmileyBW = new Raster(new int[,] {
+        {0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0},
+        {0, 0, 0, 0, 0},
+        {1, 1, 1, 1, 1},
         {0, 1, 1, 1, 0}
      });
 

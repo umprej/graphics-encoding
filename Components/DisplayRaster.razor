@@ -1,74 +1,78 @@
 @using Models
 @using System.Collections.Generic
 
-<div class="raster-legend-pair">
-    <div class="raster-grid">
-        <div class="empty"></div>
+<div class="raster-with-check">
+    <div class="raster-legend-pair">
+        <div class="raster-grid">
+            <div class="empty"></div>
 
-        @if (ShowMismatchIndicators)
-        {
-            <div class="col-mismatched">
-                @for (int i = 0; i < Raster.Row; i++)
-                {
-                    <div class="pixel">
-                        @if (MismatchedColumns.Contains(i))
-                        {
-                            <span style="color: red;">X</span>
-                        }
-                    </div>
-                }
-            </div>
-
-            <div class="row-mismatched">
-                @for (int i = 0; i < Raster.Col; i++)
-                {
-                    <div class="pixel">
-                        @if (MismatchedRows.Contains(i))
-                        {
-                            <span style="color: blue;">X</span>
-                        }
-                    </div>
-                }
-            </div>
-        }
-
-        <div class="raster">
-            @for (int i = 0; i < Raster.Col; i++)
+            @if (ShowMismatchIndicators)
             {
-                <div class="raster-row">
-                    @for (int j = 0; j < Raster.Row; j++)
+                <div class="col-mismatched">
+                    @for (int i = 0; i < Raster.Row; i++)
                     {
-                        double backgroundColorAlpha = Raster.DisplayColor ? (double)Raster.Grid[i, j].Color / Raster.MaxColor : (double)Raster.Grid[i, j].CurrentColor / Raster.MaxColor;
-
-                        var localI = i;
-                        var localJ = j;
-
-                        string textColorString = backgroundColorAlpha > 0.5 ? "white" : "black";
-                        string colorValue = Raster.DisplayValues ? Raster.Grid[i, j].Color.ToString() : string.Empty;
-                        <div class="pixel" @onclick="(() => ChangePixelColor(localI, localJ))" style="background-color: rgba(0,0,0,@backgroundColorAlpha); color: @textColorString;">
-                            @colorValue
+                        <div class="pixel">
+                            @if (MismatchedColumns.Contains(i))
+                            {
+                                <span style="color: red;">X</span>
+                            }
                         </div>
                     }
+                </div>
+
+                <div class="row-mismatched">
+                    @for (int i = 0; i < Raster.Col; i++)
+                    {
+                        <div class="pixel">
+                            @if (MismatchedRows.Contains(i))
+                            {
+                                <span style="color: blue;">X</span>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+
+            <div class="raster">
+                @for (int i = 0; i < Raster.Col; i++)
+                {
+                    <div class="raster-row">
+                        @for (int j = 0; j < Raster.Row; j++)
+                        {
+                            double backgroundColorAlpha = Raster.DisplayColor ? (double)Raster.Grid[i, j].Color / Raster.MaxColor : (double)Raster.Grid[i, j].CurrentColor / Raster.MaxColor;
+
+                            var localI = i;
+                            var localJ = j;
+
+                            string textColorString = backgroundColorAlpha > 0.5 ? "white" : "black";
+                            string colorValue = Raster.DisplayValues ? Raster.Grid[i, j].Color.ToString() : string.Empty;
+                            <div class="pixel" @onclick="(() => ChangePixelColor(localI, localJ))" style="background-color: rgba(0,0,0,@backgroundColorAlpha); color: @textColorString;">
+                                @colorValue
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="legend">
+            <div>legenda</div>
+            @foreach (int color in Raster.ColorPallete)
+            {
+                <div class="raster-row">
+                    <div class="pixel">@color</div>
+                    <div class="pixel brush-select" @onclick="(() => SelectBrushColor(color))" style="background-color:rgba(0,0,0,@((double)color / Raster.MaxColor));"></div>
                 </div>
             }
         </div>
     </div>
 
-    <div class="legend">
-        <div>legenda</div>
-        @foreach (int color in Raster.ColorPallete)
-        {
-            <div class="raster-row">
-                <div class="pixel">@color</div>
-                <div class="pixel brush-select" @onclick="(() => SelectBrushColor(color))" style="background-color:rgba(0,0,0,@((double)color / Raster.MaxColor));"></div>
-            </div>
-        }
-    </div>
+    <div>@currentBrushColor</div>
+
+    @if (ShowMismatchIndicators) {
+        <button class="check-color-btn" @onclick="CompareColors">Kontrola: @retCompareColors</button>
+    }
 </div>
-
-<div>@currentBrushColor</div>
-
-<button class="check-color-btn" @onclick="CompareColors">Kontrola: @retCompareColors</button>
 
 @code {
     [Parameter] public Raster Raster { get; set; }

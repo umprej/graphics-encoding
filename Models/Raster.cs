@@ -1,4 +1,6 @@
-﻿namespace Models
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Models
 {
     public class Raster
     {
@@ -38,6 +40,61 @@
 
             BuildRaster(grid, displayValues, displayColor, clickable);
         }
+
+        public Raster(string gridString, int startColor,
+                                 bool displayValues = true,
+                                 bool displayColor = true,
+                                 bool clickable = false)
+        {
+            string[] lines = gridString.Trim().Split(Environment.NewLine);
+            int sum;
+            var sums = new HashSet<int>();
+            foreach (string line in lines)
+            {
+                string[] numberStrings = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                sum = 0;
+
+                foreach (string numStr in numberStrings)
+                {
+                    int num;
+                    if (int.TryParse(numStr, out num))
+                    {
+                        sum += num;
+                    }
+                    else
+                    {
+                        throw new Exception("$\"Failed to parse '{numStr}' as an integer.\"");
+
+                    }
+                }
+                sums.Add(sum);
+            }
+
+            if (sums.Count != 1)
+            {
+                throw new Exception("Falied to parse input string, not all lines have the same sum");
+            }
+
+            Col = sums.First();
+            Row = lines.Length;
+
+            int[,] grid = new int[Col, Row];
+
+            int i = 0, j = 0;
+            foreach (string line in lines)
+            {
+                string[] numberStrings = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                int currentColor = startColor;
+                foreach (string num in numberStrings)
+                {
+                    currentColor = currentColor == 1 ? 0 : 1;
+                }
+            }
+
+                //BuildRaster(grid, displayValues, displayColor, clickable);
+            }
 
         public Raster(string filename, int firstColor) {
             try
