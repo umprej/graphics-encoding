@@ -9,7 +9,7 @@ namespace Models
         public int Col { get; private set; }
         public int Row { get; private set; }
         public int MaxColor { get; private set; }
-        public SortedSet<int> ColorPallete { get; private set; } = new SortedSet<int>();
+        public SortedSet<int> ColorPalette { get; private set; } = new SortedSet<int>();
 
         private int StartingColor;
 
@@ -44,7 +44,7 @@ namespace Models
                 {
                     MaxColor = Math.Max(MaxColor, grid[i, j]);
                     Pixels[i, j] = new Pixel(grid[i, j]);
-                    ColorPallete.Add(Pixels[i, j].Color);
+                    ColorPalette.Add(Pixels[i, j].Color);
                 }
             }
         }
@@ -101,7 +101,7 @@ namespace Models
         public string CompressedString()
         {
             StringBuilder str = new StringBuilder();
-            if (ColorPallete.Count == 2)
+            if (ColorPalette.Count == 2)
             {
                 int currColor;
                 int currColorCount;
