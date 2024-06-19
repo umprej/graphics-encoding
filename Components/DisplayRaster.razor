@@ -1,5 +1,6 @@
 @using Models
 @using System.Collections.Generic
+@using Microsoft.AspNetCore.Components
 
 <div class="raster-with-check">
     <div class="raster-legend-pair">
@@ -9,7 +10,7 @@
             @if (ShowMismatchIndicators)
             {
                 <div class="col-mismatched">
-                    @for (int i = 0; i < Raster.Row; i++)
+                    @for (int i = 0; i < Raster.Grid.Row; i++)
                     {
                         <div class="pixel">
                             @if (MismatchedColumns.Contains(i))
@@ -21,7 +22,7 @@
                 </div>
 
                 <div class="row-mismatched">
-                    @for (int i = 0; i < Raster.Col; i++)
+                    @for (int i = 0; i < Raster.Grid.Col; i++)
                     {
                         <div class="pixel">
                             @if (MismatchedRows.Contains(i))
@@ -34,18 +35,18 @@
             }
 
             <div class="raster">
-                @for (int i = 0; i < Raster.Col; i++)
+                @for (int i = 0; i < Raster.Grid.Row; i++)
                 {
                     <div class="raster-row">
-                        @for (int j = 0; j < Raster.Row; j++)
+                        @for (int j = 0; j < Raster.Grid.Col; j++)
                         {
-                            double backgroundColorAlpha = Raster.DisplayColor ? (double)Raster.Grid[i, j].Color / Raster.MaxColor : (double)Raster.Grid[i, j].CurrentColor / Raster.MaxColor;
+                            double backgroundColorAlpha = Raster.DisplayColor ? (double)Raster.Grid.Pixels[i, j].Color / Raster.Grid.MaxColor : (double)Raster.Grid.Pixels[i, j].CurrentColor / Raster.Grid.MaxColor;
 
                             var localI = i;
                             var localJ = j;
 
                             string textColorString = backgroundColorAlpha > 0.5 ? "white" : "black";
-                            string colorValue = Raster.DisplayValues ? Raster.Grid[i, j].Color.ToString() : string.Empty;
+                            string colorValue = Raster.DisplayValues ? Raster.Grid.Pixels[i, j].Color.ToString() : string.Empty;
                             <div class="pixel" @onclick="(() => ChangePixelColor(localI, localJ))" style="background-color: rgba(0,0,0,@backgroundColorAlpha); color: @textColorString;">
                                 @colorValue
                             </div>
@@ -57,11 +58,11 @@
 
         <div class="legend">
             <div>legenda</div>
-            @foreach (int color in Raster.ColorPallete)
+            @foreach (int color in Raster.Grid.ColorPallete)
             {
                 <div class="raster-row">
                     <div class="pixel">@color</div>
-                    <div class="pixel brush-select" @onclick="(() => SelectBrushColor(color))" style="background-color:rgba(0,0,0,@((double)color / Raster.MaxColor));"></div>
+                    <div class="pixel brush-select" @onclick="(() => SelectBrushColor(color))" style="background-color:rgba(0,0,0,@((double)color / Raster.Grid.MaxColor));"></div>
                 </div>
             }
         </div>
@@ -69,13 +70,14 @@
 
     <div>@currentBrushColor</div>
 
-    @if (ShowMismatchIndicators) {
+    @if (ShowMismatchIndicators)
+    {
         <button class="check-color-btn" @onclick="CompareColors">Kontrola: @retCompareColors</button>
     }
 </div>
 
 @code {
-    [Parameter] public Raster Raster { get; set; }
+    [Parameter] public ArrayRaster Raster { get; set; }
     [Parameter] public bool ShowMismatchIndicators { get; set; } = false;
 
     private HashSet<int> MismatchedRows { get; set; } = new HashSet<int>();
@@ -91,14 +93,14 @@
 
     private void ChangePixelColor(int i, int j)
     {
-        Raster.Grid[i, j].ChangeCurrentColor(currentBrushColor);
+        Raster.Grid.Pixels[i, j].ChangeCurrentColor(currentBrushColor);
         StateHasChanged();
     }
 
     private void CompareColors()
     {
-        retCompareColors = Raster.ColorsMatchBool();
-        var (rows, cols) = Raster.ColorsMatch();
+        retCompareColors = Raster.Grid.ColorsMatchBool();
+        var (rows, cols) = Raster.Grid.ColorsMatch();
         MismatchedRows = new HashSet<int>(rows);
         MismatchedColumns = new HashSet<int>(cols);
     }

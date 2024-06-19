@@ -7,28 +7,28 @@
 
 <h1>Graphics Encoding</h1>
 
-<DisplayRaster Raster="rasterSmiley"/>
+<DisplayRaster ArrayRaster="rasterSmiley" />
 <br>
-<DisplayRaster Raster="rasterSmileyBW" />
+<DisplayRaster ArrayRaster="rasterSmileyBW" />
 <br>
-<DisplayRaster Raster="rasterMultipleDigits"/>
+<DisplayRaster ArrayRaster="rasterMultipleDigits" />
 <br>
-<DisplayRaster Raster="rasterGreyscaleTest"/>
+<DisplayRaster ArrayRaster="rasterGreyscaleTest" />
 <br>
-<DisplayRaster Raster="rasterVertical"/>
+<DisplayRaster ArrayRaster="rasterVertical" />
 
 <br>
-<DisplayRaster Raster="rasterValuesOnly"/>
+<DisplayRaster ArrayRaster="rasterValuesOnly" />
 
 <br>
-<DisplayRaster Raster="rasterColorOnly"/>
+<DisplayRaster ArrayRaster="rasterColorOnly" />
 
 <br>
-<DisplayRaster Raster="rasterEmpty" />
+<DisplayRaster ArrayRaster="rasterEmpty" />
 
 
 @code {
-    Raster rasterSmiley = new Raster(new int[,] {
+    Raster rasterSmiley = new ArrayRaster(new int[,] {
         {0, 1, 0, 1, 0},
         {0, 2, 0, 2, 0},
         {0, 0, 0, 0, 0},
@@ -36,7 +36,7 @@
         {0, 1, 1, 1, 0}
      });
 
-    Raster rasterSmileyBW = new Raster(new int[,] {
+    Raster rasterSmileyBW = new ArrayRaster(new int[,] {
         {0, 1, 0, 1, 0},
         {0, 1, 0, 1, 0},
         {0, 0, 0, 0, 0},
@@ -44,33 +44,33 @@
         {0, 1, 1, 1, 0}
      });
 
-    Raster rasterAssymetric = new Raster(new int[,] {
+    Raster rasterAssymetric = new ArrayRaster(new int[,] {
         {1, 1, 1, 1, 0},
         {0, 0, 0, 0, 1},
         {0, 1, 1, 1, 0}
      });
 
-     Raster rasterMultipleDigits = new Raster(new int[,] {
+    Raster rasterMultipleDigits = new ArrayRaster(new int[,] {
         {1, 60, 1, 0},
         {0, 0, 255, 0},
         {0, 344, 1, 1}
      });
 
-     Raster rasterGreyscaleTest = new Raster(new int[,] {
+    Raster rasterGreyscaleTest = new ArrayRaster(new int[,] {
         {0, 16, 16*2, 16*3},
         {16*4, 16*5, 16*6, 16*7},
         {16*8, 16*9, 16*10, 16*11},
         {16*12, 16*13, 16*14, 16*15}
      });
 
-      Raster rasterVertical = new Raster(new int[,] {
+    Raster rasterVertical = new ArrayRaster(new int[,] {
         {1, 60},
         {0, 0},
         {4, 12},
         {0, 344}
      });
 
-    Raster rasterValuesOnly = new Raster(new int[,] {
+    Raster rasterValuesOnly = new ArrayRaster(new int[,] {
         {0, 1, 0, 1, 0},
         {0, 2, 0, 2, 0},
         {0, 0, 0, 0, 0},
@@ -78,7 +78,7 @@
         {0, 1, 1, 1, 0}
      }, true, false);
 
-    Raster rasterColorOnly = new Raster(new int[,] {
+    Raster rasterColorOnly = new ArrayRaster(new int[,] {
         {0, 1, 0, 1, 0},
         {0, 2, 0, 2, 0},
         {0, 0, 0, 0, 0},
@@ -86,7 +86,7 @@
         {0, 1, 1, 1, 0}
      }, false, true);
 
-    Raster rasterEmpty = new Raster(new int[,] {
+    Raster rasterEmpty = new ArrayRaster(new int[,] {
         {0, 1, 0, 1, 0},
         {0, 2, 0, 2, 0},
         {0, 0, 0, 0, 0},
