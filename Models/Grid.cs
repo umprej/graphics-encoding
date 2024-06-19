@@ -133,7 +133,32 @@ namespace Models
             }
             else
             {
+                int currColor;
+                int currColorCount;
+                for (int i = 0; i < Col; i++)
+                {
+                    currColor = Pixels[i, 0].Color;
+                    currColorCount = 0;
+                    string row = "";
 
+                    for (int j = 0; j < Row; j++)
+                    {
+                        if (Pixels[i, j].Color == currColor)
+                        {
+                            currColorCount++;
+                        }
+                        else
+                        {
+                            row += currColor + "-" + currColorCount + " ";
+                            currColorCount = 1;
+                            currColor = Pixels[i, j].Color;
+
+                        }
+                    }
+                    row += currColor + "-" + currColorCount + " ";
+
+                    str.AppendLine(row);
+                }
             }
             return str.ToString();
         }
