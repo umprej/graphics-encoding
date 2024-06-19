@@ -1,4 +1,6 @@
-﻿namespace Models
+﻿using System.Text;
+
+namespace Models
 {
     public class Grid
     {
@@ -9,17 +11,13 @@
         public int MaxColor { get; private set; }
         public SortedSet<int> ColorPallete { get; private set; } = new SortedSet<int>();
 
-        public Grid(int row, int col)
-        {
-            Col = col;
-            Row = row;
-            InitializeGrid();
-        }
+        private int StartingColor;
 
-        public Grid(int[,] grid)
+        public Grid(int[,] grid, int startingColor = 0)
         {
             Col = grid.GetLength(0);
             Row = grid.GetLength(1);
+            StartingColor = startingColor;
             InitializeGrid(grid);
         }
 
@@ -98,6 +96,46 @@
                 }
             }
             return str;
+        }
+
+        public string CompressedString()
+        {
+            StringBuilder str = new StringBuilder();
+            if (ColorPallete.Count == 2)
+            {
+                int currColor;
+                int currColorCount;
+
+                for (int i = 0; i < Col; i++)
+                {
+                    currColor = StartingColor;
+                    currColorCount = 0;
+                    List<int> row = new List<int>();
+
+                    for (int j = 0; j < Row; j++)
+                    {
+                        if (Pixels[i, j].Color == currColor)
+                        {
+                            currColorCount++;
+                        }
+                        else
+                        {
+                            row.Add(currColorCount);
+                            currColorCount = 1;
+                            currColor = currColor == 0 ? 1 : 0;
+
+                        }
+                    }
+                    row.Add(currColorCount);
+
+                    str.AppendLine(string.Join(" ", row));
+                }
+            }
+            else
+            {
+
+            }
+            return str.ToString();
         }
     }
 }
