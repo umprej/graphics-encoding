@@ -51,7 +51,7 @@ namespace Models
             var sums = new HashSet<int>();
             foreach (string line in lines)
             {
-                string[] numberStrings = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] numberStrings = line.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
 
                 sum = 0;
 
@@ -84,7 +84,7 @@ namespace Models
             int i = 0, j = 0;
             foreach (string line in lines)
             {
-                string[] numberStrings = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] numberStrings = line.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
 
                 int currentColor = startColor;
                 foreach (string num in numberStrings)
