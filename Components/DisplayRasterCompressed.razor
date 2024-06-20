@@ -1,0 +1,15 @@
+@using Models
+@using graphics_encoding.Components
+@using Microsoft.AspNetCore.Components
+
+<div class="text-raster-pair">
+    <div class="text-display pre-wrap">
+        @Raster.Grid.CompressedString()
+    </div>
+    <DisplayRaster Raster="Raster" ShowMismatchIndicators="ShowMismatchIndicators" />
+</div>
+
+@code {
+    [Parameter] public ArrayRaster Raster { get; set; }
+    [Parameter] public bool ShowMismatchIndicators { get; set; } = false;
+}

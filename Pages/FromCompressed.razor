@@ -4,28 +4,9 @@
 @using graphics_encoding.Components
 @using System.Collections.Generic
 
-<div class="text-raster-pair">
-    <div class="text-display pre-wrap">
-        @rasterSmiley.Grid.CompressedString()
-    </div>
-    <DisplayRaster Raster="rasterSmiley" ShowMismatchIndicators="true" />
-</div>
-<br>
-
-<div class="text-raster-pair">
-    <div class="text-display pre-wrap">
-        @rasterSmileyColor.Grid.CompressedString()
-    </div>
-    <DisplayRaster Raster="rasterSmileyColor" ShowMismatchIndicators="true" />
-</div>
-<br>
-
-<div class="text-raster-pair">
-    <div class="text-display pre-wrap">
-        @rasterCat.Grid.CompressedString()
-    </div>
-    <DisplayRaster Raster="rasterCat" ShowMismatchIndicators="true" />
-</div>
+<DisplayRasterCompressed="rasterSmiley" ShowMismatchIndicators="true" />
+<DisplayRasterCompressed="rasterSmileyColor" ShowMismatchIndicators="true" />
+<DisplayRasterCompressed="rasterCat" ShowMismatchIndicators="true" />
 
 @code {
     ArrayRaster rasterSmiley = new ArrayRaster(new int[,] {

@@ -4,13 +4,7 @@
 @using graphics_encoding.Components
 @using System.Collections.Generic
 
-<div class="text-raster-pair">
-    <div class="text-display pre-wrap">
-        @rasterSmiley.Grid.ToString()
-    </div>
-    <DisplayRaster Raster="rasterSmiley" ShowMismatchIndicators="true" />
-</div>
-<br>
+<DisplayRasterText Raster="rasterSmiley" ShowMismatchIndicators="true" />
 
 @code {
     ArrayRaster rasterSmiley = new ArrayRaster(new int[,] {
