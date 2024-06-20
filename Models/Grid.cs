@@ -14,25 +14,15 @@ namespace Models
         public int StartingColor;
         public bool IsDuotone { get; private set; }
 
-        public Grid(int[,] grid, int startingColor = 0)
+        private string Delimiter { get; set; }
+
+        public Grid(int[,] grid, string delimiter = " ", int startingColor = 0)
         {
             Col = grid.GetLength(0);
             Row = grid.GetLength(1);
+            Delimiter = delimiter;
             StartingColor = startingColor;
             InitializeGrid(grid);
-        }
-
-        private void InitializeGrid()
-        {
-            Pixels = new Pixel[Col, Row];
-
-            for (int i = 0; i < Col; i++)
-            {
-                for (int j = 0; j < Row; j++)
-                {
-                    Pixels[i, j] = new Pixel();
-                }
-            }
         }
 
         private void InitializeGrid(int[,] grid)
@@ -131,7 +121,7 @@ namespace Models
                     }
                     row.Add(currColorCount);
 
-                    str.AppendLine(string.Join(" ", row));
+                    str.AppendLine(string.Join(Delimiter, row));
                 }
             }
             else
@@ -152,13 +142,13 @@ namespace Models
                         }
                         else
                         {
-                            row += currColor + "-" + currColorCount + " ";
+                            row += currColor + Delimiter + currColorCount + " ";
                             currColorCount = 1;
                             currColor = Pixels[i, j].Color;
 
                         }
                     }
-                    row += currColor + "-" + currColorCount + " ";
+                    row += currColor + Delimiter + currColorCount + " ";
 
                     str.AppendLine(row);
                 }
