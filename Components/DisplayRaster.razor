@@ -1,4 +1,4 @@
-@using Models
+﻿@using Models
 @using System.Collections.Generic
 @using Microsoft.AspNetCore.Components
 
@@ -72,7 +72,7 @@
 
     @if (ShowMismatchIndicators)
     {
-        <button class="check-color-btn" @onclick="CompareColors">Kontrola: @retCompareColors</button>
+        <button class="check-color-btn" @onclick="CompareColors">Kontrola: @IsCorrect</button>
     }
 </div>
 
@@ -82,7 +82,7 @@
 
     private HashSet<int> MismatchedRows { get; set; } = new HashSet<int>();
     private HashSet<int> MismatchedColumns { get; set; } = new HashSet<int>();
-    private bool retCompareColors = false;
+    private string IsCorrect = "???";
 
     private int currentBrushColor = 0;
 
@@ -99,7 +99,7 @@
 
     private void CompareColors()
     {
-        retCompareColors = Raster.Grid.ColorsMatchBool();
+        IsCorrect = Raster.Grid.ColorsMatchBool() ? "Správně!" : "Špatně";
         var (rows, cols) = Raster.Grid.ColorsMatch();
         MismatchedRows = new HashSet<int>(rows);
         MismatchedColumns = new HashSet<int>(cols);
