@@ -4,10 +4,10 @@
 
 <div class="text-raster-pair">
     <div class="compressed-text">
-        @if (@Raster.Grid.IsDuotone)
+        @if (@Raster.Grid is DuotoneGrid duotoneGrid)
         {
             <div class="first-color">
-            První barva: @Raster.Grid.StartingColor
+                První barva: @duotoneGrid.StartingColor;
             </div>
         }
         <div class="text-display pre-wrap">
