@@ -1,17 +1,48 @@
-@page "/FromText"
+﻿@page "/FromText"
 
 @using Models
 @using graphics_encoding.Components
 @using System.Collections.Generic
 
+<h1>Aktivita 2 – rozdělení čísla a obrázku</h1>
+
 <DisplayRasterText Raster="rasterSmiley" ShowMismatchIndicators="true" />
+<DisplayRasterText Raster="rasterSmileyColor" ShowMismatchIndicators="true" />
+<DisplayRasterText Raster="rasterCat" ShowMismatchIndicators="true" />
 
 @code {
     ArrayRaster rasterSmiley = new ArrayRaster(new int[,] {
+        {0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0},
+        {0, 0, 0, 0, 0},
+        {1, 0, 0, 0, 1},
+        {0, 1, 1, 1, 0}
+     }, false, false, true);
+
+    ArrayRaster rasterSmileyColor = new ArrayRaster(new int[,] {
         {0, 1, 0, 1, 0},
         {0, 2, 0, 2, 0},
         {0, 0, 0, 0, 0},
         {1, 4, 4, 4, 1},
         {0, 1, 1, 1, 0}
      }, false, false, true);
+
+    ArrayRaster rasterCat = new ArrayRaster(new int[,] {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+        {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0},
+        {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+        {0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0},
+        {0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+        {0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0},
+        {0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+        {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0}
+    }, false, false, true);
 }

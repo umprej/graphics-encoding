@@ -11,7 +11,8 @@ namespace Models
         public int MaxColor { get; private set; }
         public SortedSet<int> ColorPalette { get; private set; } = new SortedSet<int>();
 
-        private int StartingColor;
+        public int StartingColor;
+        public bool IsDuotone { get; private set; }
 
         public Grid(int[,] grid, int startingColor = 0)
         {
@@ -47,6 +48,8 @@ namespace Models
                     ColorPalette.Add(Pixels[i, j].Color);
                 }
             }
+
+            IsDuotone = ColorPalette.Count == 2 ? true : false;
         }
 
         public bool ColorsMatchBool()
@@ -101,7 +104,7 @@ namespace Models
         public string CompressedString()
         {
             StringBuilder str = new StringBuilder();
-            if (ColorPalette.Count == 2)
+            if (IsDuotone)
             {
                 int currColor;
                 int currColorCount;

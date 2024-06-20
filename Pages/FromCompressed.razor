@@ -1,12 +1,16 @@
-@page "/FromCompressed"
+﻿@page "/FromCompressed"
 
 @using Models
 @using graphics_encoding.Components
 @using System.Collections.Generic
 
-<DisplayRasterCompressed="rasterSmiley" ShowMismatchIndicators="true" />
-<DisplayRasterCompressed="rasterSmileyColor" ShowMismatchIndicators="true" />
-<DisplayRasterCompressed="rasterCat" ShowMismatchIndicators="true" />
+<h1>Aktivita 3 – Komprimovaný černobílý a barevný kód</h1>
+
+<DisplayRasterCompressed Raster="rasterSmiley" ShowMismatchIndicators="true" />
+<DisplayRasterCompressed Raster="rasterSmileyColor" ShowMismatchIndicators="true" />
+<DisplayRasterCompressed Raster="rasterCat" ShowMismatchIndicators="true" />
+<DisplayRasterCompressed Raster="rasterFace" ShowMismatchIndicators="true" />
+
 
 @code {
     ArrayRaster rasterSmiley = new ArrayRaster(new int[,] {
@@ -24,6 +28,20 @@
         {1, 4, 4, 4, 1},
         {0, 1, 1, 1, 0}
      }, 0, false, false, true);
+
+    ArrayRaster rasterFace = new ArrayRaster(new int[,] {
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0},
+        {0, 1, 4, 4, 4, 4, 4, 4, 1, 0, 0},
+        {0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+        {0, 1, 0, 2, 0, 0, 0, 2, 0, 1, 0},
+        {0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0},
+        {0, 1, 0, 0, 3, 3, 3, 0, 0, 1, 0},
+        {0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0},
+        {0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    }, 0, false, false, true);
+
 
     ArrayRaster rasterCat = new ArrayRaster(new int[,] {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0},

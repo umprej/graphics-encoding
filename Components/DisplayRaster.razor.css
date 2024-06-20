@@ -57,3 +57,22 @@
 .brush-select {
     cursor: cell;
 }
+
+.raster-with-check {
+    margin: 10px;
+}
+
+.color-palette-pair {
+    margin-top: 26px;
+}
+
+.color-palette-text {
+    font-weight: bold;
+}
+
+.check-color-btn {
+    border-radius: 4px;
+    padding: 2px;
+    position: relative;
+    left: 3em;
+}

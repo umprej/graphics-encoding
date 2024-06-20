@@ -3,8 +3,16 @@
 @using Microsoft.AspNetCore.Components
 
 <div class="text-raster-pair">
-    <div class="text-display pre-wrap">
-        @Raster.Grid.CompressedString()
+    <div class="compressed-text">
+        @if (@Raster.Grid.IsDuotone)
+        {
+            <div class="first-color">
+            První barva: @Raster.Grid.StartingColor
+            </div>
+        }
+        <div class="text-display pre-wrap">
+            @Raster.Grid.CompressedString()
+        </div>
     </div>
     <DisplayRaster Raster="Raster" ShowMismatchIndicators="ShowMismatchIndicators" />
 </div>

@@ -1,6 +1,15 @@
 .text-raster-pair {
     display: flex;
     flex-direction: row;
+    margin: 10px
+}
+
+.first-color {
+    font-weight: bold;
+}
+
+.compressed-text {
+    margin-top: 10px;
 }
 
 .pre-wrap {

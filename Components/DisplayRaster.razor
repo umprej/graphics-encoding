@@ -42,12 +42,12 @@
                         {
                             double backgroundColorAlpha = Raster.DisplayColor ? (double)Raster.Grid.Pixels[i, j].Color / Raster.Grid.MaxColor : (double)Raster.Grid.Pixels[i, j].CurrentColor / Raster.Grid.MaxColor;
 
-                            var localI = i;
-                            var localJ = j;
+                            int I = i;
+                            int J = j;
 
                             string textColorString = backgroundColorAlpha > 0.5 ? "white" : "black";
                             string colorValue = Raster.DisplayValues ? Raster.Grid.Pixels[i, j].Color.ToString() : string.Empty;
-                            <div class="pixel" @onclick="(() => ChangePixelColor(localI, localJ))" style="background-color: rgba(0,0,0,@backgroundColorAlpha); color: @textColorString;">
+                            <div class="pixel" @onclick="(() => ChangePixelColor(I, J))" style="background-color: rgba(0,0,0,@backgroundColorAlpha); color: @textColorString;">
                                 @colorValue
                             </div>
                         }
@@ -56,19 +56,19 @@
             </div>
         </div>
 
-        <div class="legend">
-            <div>legenda</div>
-            @foreach (int color in Raster.Grid.ColorPalette)
-            {
-                <div class="raster-row">
-                    <div class="pixel">@color</div>
-                    <div class="pixel brush-select" @onclick="(() => SelectBrushColor(color))" style="background-color:rgba(0,0,0,@((double)color / Raster.Grid.MaxColor));"></div>
-                </div>
-            }
+        <div class="color-palette-pair">
+            <div class="color-palette-text">legenda:</div>
+            <div class="color-palette">
+                @foreach (int color in Raster.Grid.ColorPalette)
+                {
+                    <div class="raster-row">
+                        <div class="pixel">@color</div>
+                        <div class="pixel brush-select" @onclick="(() => SelectBrushColor(color))" style="background-color:rgba(0,0,0,@((double)color / Raster.Grid.MaxColor));"></div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
-
-    <div>@currentBrushColor</div>
 
     @if (ShowMismatchIndicators)
     {
