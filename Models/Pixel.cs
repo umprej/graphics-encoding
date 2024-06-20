@@ -10,7 +10,7 @@
         {
             Color = 0;
         }
-        public Pixel (int color)
+        public Pixel(int color)
         {
             Color = color;
         }
