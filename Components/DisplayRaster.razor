@@ -35,10 +35,10 @@
             }
 
             <div class="raster">
-                @for (int i = 0; i < Raster.Grid.Row; i++)
+                @for (int i = 0; i < Raster.Grid.Col; i++)
                 {
                     <div class="raster-row">
-                        @for (int j = 0; j < Raster.Grid.Col; j++)
+                        @for (int j = 0; j < Raster.Grid.Row; j++)
                         {
                             double backgroundColorAlpha = Raster.DisplayColor ? (double)Raster.Grid.Pixels[i, j].Color / Raster.Grid.MaxColor : (double)Raster.Grid.Pixels[i, j].CurrentColor / Raster.Grid.MaxColor;
 
